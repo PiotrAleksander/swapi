@@ -1,6 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./index.css";
+import { fetchResource } from "../../services/swapi";
+import { ResourceType } from "../../types/enums/ResourceTypeEnum";
+import { IResourceContext } from "../../types/interfaces/IResourceContext";
+
+const initialResourceContext: IResourceContext = {
+  resourceType: ResourceType.PEOPLE,
+  resources: [],
+  counter: [0, 0],
+  onShuffle: fetchResource
+};
 
 const App: React.FC = () => {
   return (
@@ -21,6 +31,6 @@ const App: React.FC = () => {
       </header>
     </div>
   );
-}
+};
 
 export default App;

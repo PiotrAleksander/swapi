@@ -7,19 +7,23 @@ import MenuItem from "@material-ui/core/MenuItem";
 import AppContext from "../../../contexts/appContext";
 import { ResourceType } from "../../../types/enums/ResourceTypeEnum";
 
+import "./index.css";
+
 export default () => {
   const { resourceType, setResourceType } = useContext(AppContext);
 
   return (
     <FormControl>
-      <InputLabel id="resource-dropdown-label">Age</InputLabel>
+      <InputLabel className="dropdown-menu" id="resource-dropdown-label">
+        Resource Type
+      </InputLabel>
       <Select
         labelId="resource-dropdown-label"
         id="resource-dropdown"
         value={resourceType}
-        onChange={event => setResourceType(event.target.value)}
+        onChange={event => setResourceType(event.target.value as ResourceType)}
       >
-        <MenuItem value={ResourceType.People}>
+        <MenuItem value={ResourceType.PEOPLE}>
           {ResourceType[ResourceType.PEOPLE]}
         </MenuItem>
         <MenuItem value={ResourceType.STARSHIPS}>

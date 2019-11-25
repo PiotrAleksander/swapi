@@ -16,7 +16,7 @@ describe("AppContext", () => {
   beforeEach(() => {
     mockedFetch = jest.fn();
     mockedFetch.mockResolvedValue({
-      json: async () => [firstStarship, secondStarship]
+      json: async () => [firstStarship]
     });
     window.fetch = mockedFetch;
   });

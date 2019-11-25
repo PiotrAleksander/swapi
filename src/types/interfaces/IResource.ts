@@ -1,20 +1,20 @@
 export interface IPeopleResource {
-  name: String;
-  birth_year: String;
-  eye_color: String;
-  gender: String;
-  hair_color: String;
-  height: String;
-  mass: String;
-  skin_color: String;
-  homeworld: String;
-  films: IFilmResource[];
-  species: ISpeciesResource[];
-  starships: IStarshipResource[];
-  vehicles: IVehicleResource[];
-  url: String;
-  created: String;
-  edited: String;
+  name: string;
+  birth_year: string;
+  eye_color: string;
+  gender: string;
+  hair_color: string;
+  height: string;
+  mass: string;
+  skin_color: string;
+  homeworld: string;
+  films: string[];
+  species: string[];
+  starships: string[];
+  vehicles: string[];
+  url: string;
+  created: string;
+  edited: string;
 }
 
 export interface IStarshipResource {
@@ -31,8 +31,8 @@ export interface IStarshipResource {
   MGLT: string;
   cargo_capacity: string;
   consumables: string;
-  films: IFilmResource[];
-  pilots: IPeopleResource[];
+  films: string[];
+  pilots: string[];
   url: string;
   created: string;
   edited: string;

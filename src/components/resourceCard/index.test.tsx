@@ -1,6 +1,7 @@
 import React from "react";
-import ResourceCard from ".";
 import { render } from "@testing-library/react";
+
+import ResourceCard from ".";
 
 describe("ResourceCard", () => {
   it("renders without crashing", () => {

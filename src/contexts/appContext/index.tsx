@@ -4,23 +4,27 @@ import React, {
   useState,
   useRef,
   useEffect,
-  useCallback
+  useCallback,
+  Context
 } from "react";
 import { ResourceType } from "../../types/enums/ResourceTypeEnum";
 import { IAppContext } from "../../types/interfaces/IAppContext";
 import api from "../../services/swapi";
+import { firstStarship, secondStarship } from "../../../mocks";
 
 const initialAppContext: IAppContext = {
   resourceType: ResourceType.PEOPLE,
   setResourceType: () => {},
-  resources: [],
+  resources: [firstStarship, secondStarship],
   counter: [0, 0],
   setCounter: () => {},
   onShuffle: () => {}
 };
 
-const AppContext = createContext<IAppContext>(initialAppContext);
-const { Provider, Consumer: AppConsumer } = AppContext;
+let AppContext: Context<IAppContext>;
+const { Provider, Consumer: AppConsumer } = (AppContext = createContext<
+  IAppContext
+>(initialAppContext));
 
 const AppProvider = ({ children }: { children: ReactNode }) => {
   const [resourceType, setResourceType] = useState(ResourceType.PEOPLE);

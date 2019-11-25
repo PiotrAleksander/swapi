@@ -7,15 +7,12 @@ import { AppProvider, AppConsumer } from "../../contexts/appContext";
 
 describe("Counter", () => {
   it("should render correctly", () => {
-    render(<Counter />);
+    const { container } = render(<Counter />);
+    expect(container).toMatchSnapshot();
   });
 
   it("should render default counter value", () => {
-    const { getByRole } = render(
-      <AppProvider>
-        <Counter />
-      </AppProvider>
-    );
+    const { getByRole } = render(<Counter />);
 
     const counter = getByRole("heading");
 

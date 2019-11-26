@@ -7,7 +7,7 @@ describe("SWAPI", () => {
   beforeEach(() => {
     mockedFetch = jest.fn();
     mockedFetch.mockResolvedValue({
-      json: async () => [mockedResource]
+      json: async () => mockedResource
     });
     window.fetch = mockedFetch;
   });
@@ -18,7 +18,9 @@ describe("SWAPI", () => {
     });
     const count = await api.fetchResourceCount();
 
-    expect(mockedFetch).toBeCalledWith("https://swapi.co/api/people/");
+    expect(mockedFetch).toBeCalledWith("https://swapi.co/api/people/", {
+      mode: "no-cors"
+    });
     expect(count).toEqual(5);
   });
 

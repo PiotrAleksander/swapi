@@ -12,15 +12,15 @@ describe("Counter", () => {
   });
 
   it("should render default counter value", () => {
-    const { getByRole } = render(<Counter />);
+    const { getAllByRole } = render(<Counter />);
 
-    const counter = getByRole("heading");
+    const counter = getAllByRole("heading");
 
-    expect(counter).toHaveTextContent("0 : 0");
+    expect(counter[1]).toHaveTextContent("0 : 0");
   });
 
   it("should rerender correctly on counter change", async () => {
-    const { getByRole } = render(
+    const { getAllByRole, getByRole } = render(
       <AppProvider>
         <AppConsumer>
           {({ setCounter }) => (
@@ -31,11 +31,11 @@ describe("Counter", () => {
       </AppProvider>
     );
 
-    expect(getByRole("heading")).toHaveTextContent("0 : 0");
+    expect(getAllByRole("heading")[1]).toHaveTextContent("0 : 0");
 
     fireEvent.click(getByRole("button"));
 
-    const counter = await waitForElement(() => getByRole("heading"));
+    const counter = await waitForElement(() => getAllByRole("heading")[1]);
 
     expect(counter).toHaveTextContent("1 : 1");
   });

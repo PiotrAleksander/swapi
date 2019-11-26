@@ -2,8 +2,15 @@
 
 exports[`Counter should render correctly 1`] = `
 <div>
-  <h1>
+  <h4
+    class="MuiTypography-root MuiTypography-body1"
+  >
+    Counter
+  </h4>
+  <h5
+    class="MuiTypography-root MuiTypography-body1"
+  >
     0 : 0
-  </h1>
+  </h5>
 </div>
 `;

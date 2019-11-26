@@ -12,10 +12,10 @@ describe("CardsContainer", () => {
     mockedFetch = jest.fn();
     mockedFetch
       .mockResolvedValueOnce({
-        json: async () => [thirdStarship]
+        json: async () => thirdStarship
       })
       .mockResolvedValueOnce({
-        json: async () => [fourthStarship]
+        json: async () => fourthStarship
       });
     window.fetch = mockedFetch;
   });
@@ -25,18 +25,11 @@ describe("CardsContainer", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should render two Cards if resources provided", () => {
-    const { getByText } = render(<CardsContainer />);
-
-    expect(getByText("Y-wing")).toBeDefined();
-    expect(getByText("X-wing")).toBeDefined();
-  });
-
   it("should render if resources change", async () => {
     const { getByRole, getByText } = render(
       <AppProvider>
         <AppConsumer>
-          {({ onShuffle }) => <button onClick={() => onShuffle()}></button>}
+          {({ onShuffle }) => <button onClick={onShuffle}></button>}
         </AppConsumer>
         <CardsContainer />
       </AppProvider>
@@ -49,7 +42,7 @@ describe("CardsContainer", () => {
     );
     const secondHeading = await waitForElement(() => getByText("Executor"));
 
-    expect(firstHeading).toBeDefined();
-    expect(secondHeading).toBeDefined();
+    expect(firstHeading).toBeInTheDocument();
+    expect(secondHeading).toBeInTheDocument();
   });
 });

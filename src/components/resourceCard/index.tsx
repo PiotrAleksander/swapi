@@ -1,32 +1,34 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import "./index.css";
+
 import {
   IPeopleResource,
-  IStarshipResource
+  IStarshipResource,
+  INotFound
 } from "../../types/interfaces/IResource";
 import { Typography } from "@material-ui/core";
+import { isPeopleResource, isNotFound } from "../../types/typeguards";
 
-const isPeopleResource = (
-  resource: IPeopleResource | IStarshipResource
-): resource is IPeopleResource => {
-  return (resource as IPeopleResource).mass !== undefined;
-};
+import "./index.css";
 
 const ResourceCard: React.FC<
-  IPeopleResource | IStarshipResource
-> = resource => {
-  return (
-    <Card>
-      <CardContent>
-        <Typography component="h1">{resource.name}</Typography>
-        <Typography component="h2">
-          {isPeopleResource(resource) ? resource.mass : resource.crew}
-        </Typography>
-      </CardContent>
-    </Card>
-  );
-};
+  IPeopleResource | IStarshipResource | INotFound
+> = resource => (
+  <Card raised={(resource as IPeopleResource | IStarshipResource).winner}>
+    <CardContent>
+      {isNotFound(resource) ? (
+        <Typography component="h1">{resource.detail}</Typography>
+      ) : (
+        <>
+          <Typography component="h1">{resource.name}</Typography>
+          <Typography component="h2">
+            {isPeopleResource(resource) ? resource.mass : resource.crew}
+          </Typography>
+        </>
+      )}
+    </CardContent>
+  </Card>
+);
 
 export default ResourceCard;

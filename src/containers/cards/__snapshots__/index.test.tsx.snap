@@ -10,52 +10,7 @@ exports[`CardsContainer should render correctly 1`] = `
     >
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-justify-xs-center"
-      >
-        <div
-          class="MuiGrid-root MuiGrid-item"
-        >
-          <div
-            class="MuiPaper-root MuiPaper-elevation1 MuiCard-root MuiPaper-rounded"
-          >
-            <div
-              class="MuiCardContent-root"
-            >
-              <h1
-                class="MuiTypography-root MuiTypography-body1"
-              >
-                Y-wing
-              </h1>
-              <h2
-                class="MuiTypography-root MuiTypography-body1"
-              >
-                2
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div
-          class="MuiGrid-root MuiGrid-item"
-        >
-          <div
-            class="MuiPaper-root MuiPaper-elevation1 MuiCard-root MuiPaper-rounded"
-          >
-            <div
-              class="MuiCardContent-root"
-            >
-              <h1
-                class="MuiTypography-root MuiTypography-body1"
-              >
-                X-wing
-              </h1>
-              <h2
-                class="MuiTypography-root MuiTypography-body1"
-              >
-                1
-              </h2>
-            </div>
-          </div>
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>

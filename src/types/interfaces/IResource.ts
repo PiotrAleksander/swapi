@@ -1,3 +1,7 @@
+export interface INotFound {
+  detail: string;
+}
+
 export interface IPeopleResource {
   name: string;
   birth_year: string;
@@ -15,6 +19,7 @@ export interface IPeopleResource {
   url: string;
   created: string;
   edited: string;
+  winner?: boolean;
 }
 
 export interface IStarshipResource {
@@ -36,6 +41,7 @@ export interface IStarshipResource {
   url: string;
   created: string;
   edited: string;
+  winner?: boolean;
 }
 
 interface IFilmResource {}

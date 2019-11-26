@@ -9,16 +9,16 @@ import React, {
 } from "react";
 import { ResourceType } from "../../types/enums/ResourceTypeEnum";
 import { IAppContext } from "../../types/interfaces/IAppContext";
-import api from "../../services/swapi";
-import { firstStarship, secondStarship } from "../../../mocks";
+import { fetchResources, setWinnerAndCounter } from "./utils";
 
 const initialAppContext: IAppContext = {
   resourceType: ResourceType.PEOPLE,
   setResourceType: () => {},
-  resources: [firstStarship, secondStarship],
+  resources: [],
   counter: [0, 0],
   setCounter: () => {},
-  onShuffle: () => {}
+  onShuffle: () => {},
+  isSending: false
 };
 
 let AppContext: Context<IAppContext>;
@@ -44,19 +44,21 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
     // don't send if sending already in progress
     if (isSending) return;
     setIsSending(true);
-    // send the request
-    const firstIndex = Math.round(Math.random() * 10);
-    const secondIndex = Math.round(Math.random() * 10);
-    const firstResourcePromise = api.fetchResource(resourceType, firstIndex);
-    const secondResourcePromise = api.fetchResource(resourceType, secondIndex);
-    const [firstResource, secondResource] = await Promise.all([
-      firstResourcePromise,
-      secondResourcePromise
-    ]);
-    setResources([firstResource, secondResource]);
-    if (isMounted.current)
-      // only update if the provider is still mounted
-      setIsSending(false);
+    try {
+      // send the request
+      const fetchedResources = await fetchResources(resourceType);
+
+      const [firstResource, secondResource] = setWinnerAndCounter(
+        fetchedResources,
+        setCounter
+      );
+
+      setResources([firstResource, secondResource]);
+    } finally {
+      if (isMounted.current)
+        // only update if the provider is still mounted
+        setIsSending(false);
+    }
   }, [isSending, resourceType]); // update the callback if sending or resource type changes
 
   return (
@@ -67,7 +69,8 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
         resources,
         counter,
         setCounter,
-        onShuffle
+        onShuffle,
+        isSending
       }}
     >
       {children}

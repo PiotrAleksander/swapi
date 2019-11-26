@@ -1,27 +1,22 @@
 import React from "react";
-import {
-  render,
-  fireEvent,
-  cleanup,
-  waitForElement
-} from "@testing-library/react";
+import { render, fireEvent, waitForElement } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 import { AppProvider, AppConsumer } from ".";
 import { ResourceType } from "../../types/enums/ResourceTypeEnum";
 import { firstStarship, secondStarship } from "../../../mocks";
+import { setWinnerAndCounter } from "./utils";
+import { IStarshipResource } from "../../types/interfaces/IResource";
 
 describe("AppContext", () => {
   let mockedFetch: jest.Mock;
   beforeEach(() => {
     mockedFetch = jest.fn();
     mockedFetch.mockResolvedValue({
-      json: async () => [firstStarship]
+      json: async () => firstStarship
     });
     window.fetch = mockedFetch;
   });
-
-  afterEach(cleanup);
 
   it("consumer renders initial resourceType", () => {
     const { container } = render(
@@ -42,7 +37,7 @@ describe("AppContext", () => {
           {({ resources, onShuffle }) => (
             <div>
               <h1>{resources && resources[0].name}</h1>
-              <button onClick={() => onShuffle()}></button>
+              <button onClick={onShuffle}></button>
             </div>
           )}
         </AppConsumer>
@@ -80,5 +75,30 @@ describe("AppContext", () => {
     const heading = await waitForElement(() => getByRole("heading"));
 
     expect(heading).toHaveTextContent("STARSHIPS");
+  });
+
+  describe("setWinner", () => {
+    let mockedSetCounter: jest.Mock;
+    beforeEach(() => {
+      mockedSetCounter = jest.fn();
+    });
+
+    it("should correctly set the winner based on resources passed", () => {
+      const resources = setWinnerAndCounter(
+        [firstStarship, secondStarship],
+        mockedSetCounter
+      );
+      expect((resources[0] as IStarshipResource).winner).toBeTruthy();
+      expect((resources[1] as IStarshipResource).winner).toBeFalsy();
+    });
+
+    it("should correctly set winner to false if the starships has the same crew", () => {
+      const resources = setWinnerAndCounter(
+        [firstStarship, firstStarship],
+        mockedSetCounter
+      );
+      expect((resources[0] as IStarshipResource).winner).toBeFalsy();
+      expect((resources[1] as IStarshipResource).winner).toBeFalsy();
+    });
   });
 });

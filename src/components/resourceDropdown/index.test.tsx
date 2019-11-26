@@ -8,8 +8,8 @@ import {
 import "@testing-library/jest-dom/extend-expect";
 
 import Dropdown from ".";
-import { ResourceType } from "../../../types/enums/ResourceTypeEnum";
-import { AppProvider } from "../../../contexts/appContext";
+import { ResourceType } from "../../types/enums/ResourceTypeEnum";
+import { AppProvider } from "../../contexts/appContext";
 
 describe("Dropdown", () => {
   it("should render default resourceType", () => {
@@ -23,15 +23,19 @@ describe("Dropdown", () => {
         <Dropdown />
       </AppProvider>
     );
+
     expect(
       queryByText(ResourceType[ResourceType.STARSHIPS])
     ).not.toBeInTheDocument();
+
     fireEvent.click(getByRole("button"));
     await waitForElement(() => getByText(ResourceType[ResourceType.STARSHIPS]));
+
     fireEvent.click(getByText(ResourceType[ResourceType.STARSHIPS]));
     await waitForElementToBeRemoved(() =>
       getAllByRole("option", { hidden: true })
     );
+
     expect(getByText(ResourceType[ResourceType.STARSHIPS])).toBeDefined();
   });
 });

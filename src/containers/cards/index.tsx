@@ -4,7 +4,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 import ResourceCard from "../../components/resourceCard";
 import AppContext from "../../contexts/appContext";
-import { Resource } from "../../types/interfaces/IResource";
+import { Resource } from "../../types/Resource";
 
 export default () => {
   const { resources, isSending } = useContext(AppContext);

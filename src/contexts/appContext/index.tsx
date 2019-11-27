@@ -54,6 +54,8 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
       );
 
       setResources([firstResource, secondResource]);
+    } catch (error) {
+      setResources([]);
     } finally {
       if (isMounted.current)
         // only update if the provider is still mounted

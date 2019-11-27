@@ -1,5 +1,5 @@
 import { ResourceType } from "../../types/enums/ResourceTypeEnum";
-import { Resource } from "../../types/interfaces/IResource";
+import { Resource } from "../../types/Resource";
 
 export const BASE_URL = "https://swapi.co/api";
 

@@ -6,7 +6,7 @@ import { AppProvider, AppConsumer } from ".";
 import { ResourceType } from "../../types/enums/ResourceTypeEnum";
 import { firstStarship, secondStarship } from "../../../mocks";
 import { setWinnerAndCounter } from "./utils";
-import { IStarshipResource } from "../../types/interfaces/IResource";
+import { IStarshipResource } from "../../types/Resource";
 
 describe("AppContext", () => {
   let mockedFetch: jest.Mock;

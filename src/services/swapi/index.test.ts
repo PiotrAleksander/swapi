@@ -27,13 +27,17 @@ describe("SWAPI", () => {
   it("should fetch with default value", async () => {
     await api.fetchResource();
 
-    expect(mockedFetch).toBeCalledWith("https://swapi.co/api/people/0/");
+    expect(mockedFetch).toBeCalledWith("https://swapi.co/api/people/0/", {
+      mode: "no-cors"
+    });
   });
 
   it("should fetch from given resource type", async () => {
     await api.fetchResource(ResourceType.STARSHIPS);
 
-    expect(mockedFetch).toBeCalledWith("https://swapi.co/api/starships/0/");
+    expect(mockedFetch).toBeCalledWith("https://swapi.co/api/starships/0/", {
+      mode: "no-cors"
+    });
   });
 
   it("should fetch mocked resource", async () => {

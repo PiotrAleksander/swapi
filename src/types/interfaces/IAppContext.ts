@@ -1,5 +1,5 @@
 import { ResourceType } from "../enums/ResourceTypeEnum";
-import { IPeopleResource, IStarshipResource, INotFound } from "./IResource";
+import { IPeopleResource, IStarshipResource, INotFound } from "../Resource";
 import { Dispatch, SetStateAction } from "react";
 
 export interface IAppContext {

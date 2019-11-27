@@ -11,7 +11,7 @@ export default class ErrorBoundary extends React.Component<
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(error: Error) {
     return { hasError: true };
   }
 
@@ -26,7 +26,7 @@ export default class ErrorBoundary extends React.Component<
     if (this.state.hasError) {
       return (
         <Typography component="h1">
-          Something went wrong. Please shuffle again.
+          Something went wrong. Please reload the page.
         </Typography>
       );
     }

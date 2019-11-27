@@ -1,6 +1,6 @@
 import { ResourceType } from "../../types/enums/ResourceTypeEnum";
 import api from "../../services/swapi";
-import { Resource } from "../../types/interfaces/IResource";
+import { Resource } from "../../types/Resource";
 import {
   isPeopleResource,
   isStarshipResource,

@@ -6,7 +6,7 @@ import {
   IPeopleResource,
   IStarshipResource,
   Resource
-} from "../../types/interfaces/IResource";
+} from "../../types/Resource";
 import { Typography } from "@material-ui/core";
 import { isPeopleResource, isNotFound } from "../../types/typeguards";
 

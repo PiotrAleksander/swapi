@@ -3,7 +3,7 @@ import {
   IPeopleResource,
   IStarshipResource,
   INotFound
-} from "../interfaces/IResource";
+} from "../Resource";
 
 export const isPeopleResource = (
   resource: Resource

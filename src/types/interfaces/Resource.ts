@@ -44,6 +44,4 @@ export interface IStarshipResource {
   winner?: boolean;
 }
 
-interface IFilmResource {}
-interface ISpeciesResource {}
-interface IVehicleResource {}
+export type Resource = INotFound | IPeopleResource | IStarshipResource;

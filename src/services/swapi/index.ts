@@ -1,9 +1,5 @@
 import { ResourceType } from "../../types/enums/ResourceTypeEnum";
-import {
-  IPeopleResource,
-  IStarshipResource,
-  INotFound
-} from "../../types/interfaces/IResource";
+import { Resource } from "../../types/interfaces/IResource";
 
 export const BASE_URL = "https://swapi.co/api";
 
@@ -24,9 +20,12 @@ export const api = (url: string) => {
   const fetchResource = async (
     resourceType = ResourceType.PEOPLE,
     index = 0
-  ): Promise<IPeopleResource | IStarshipResource | INotFound> => {
+  ): Promise<Resource> => {
     const response = await fetch(
-      `${url}/${ResourceType[resourceType].toLowerCase()}/${index}/`
+      `${url}/${ResourceType[resourceType].toLowerCase()}/${index}/`,
+      {
+        mode: "no-cors"
+      }
     );
     const result = await response.json();
     return result;

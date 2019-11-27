@@ -1,10 +1,6 @@
 import { ResourceType } from "../../types/enums/ResourceTypeEnum";
 import api from "../../services/swapi";
-import {
-  IPeopleResource,
-  IStarshipResource,
-  INotFound
-} from "../../types/interfaces/IResource";
+import { Resource } from "../../types/interfaces/IResource";
 import {
   isPeopleResource,
   isStarshipResource,
@@ -28,9 +24,9 @@ export const fetchResources = async (resourceType: ResourceType) => {
 };
 
 export const setWinnerAndCounter = (
-  resources: Array<IPeopleResource | IStarshipResource | INotFound>,
+  resources: Array<Resource>,
   setCounter: Dispatch<SetStateAction<number[]>>
-): Array<IPeopleResource | IStarshipResource | INotFound> => {
+): Array<Resource> => {
   let firstResource = resources[0];
   let secondResource = resources[1];
   if (isNotFound(firstResource) || isNotFound(secondResource)) {

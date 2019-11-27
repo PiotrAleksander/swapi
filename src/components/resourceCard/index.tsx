@@ -5,16 +5,14 @@ import CardContent from "@material-ui/core/CardContent";
 import {
   IPeopleResource,
   IStarshipResource,
-  INotFound
+  Resource
 } from "../../types/interfaces/IResource";
 import { Typography } from "@material-ui/core";
 import { isPeopleResource, isNotFound } from "../../types/typeguards";
 
 import "./index.css";
 
-const ResourceCard: React.FC<
-  IPeopleResource | IStarshipResource | INotFound
-> = resource => (
+const ResourceCard: React.FC<Resource> = resource => (
   <Card raised={(resource as IPeopleResource | IStarshipResource).winner}>
     <CardContent>
       {isNotFound(resource) ? (
